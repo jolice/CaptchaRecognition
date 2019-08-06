@@ -1,0 +1,12 @@
+{
+  "properties": [
+    {
+      "name": "captcha.retries_after_timeout",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "captcha.time_for_solving",
+      "type": "java.lang.String"
+    }
+  ]
+}
