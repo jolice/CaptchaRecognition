@@ -10,7 +10,7 @@ This is a model of a web service that allows users for solving customers' captch
 - Recognition by multiple users for more precise results
 - Automatical captcha requeuing
 
-# Technologies used:
+# Technologies used
 
 - Spring Boot
 - Spring MVC
