@@ -4,10 +4,10 @@ This is a model of a web service that allows users for solving customers' captch
 
 # Features
 
-- API key (token) authentication
 - Support for both image (Base64) and text captchas
+- Recognition by multiple users for more precise results
 - Access through the secured REST API
-- Recognition by multiple user for more precise results
+- API key (token) authentication
 - Automatical captcha requeuing
 
 # Technologies used:
