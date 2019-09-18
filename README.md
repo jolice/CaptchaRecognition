@@ -3,6 +3,7 @@
 This is a model of a web service that allows users for solving customers' captchas for the fee, a basic implementation of the AntiGate service. 
 
 [![Build Status](https://travis-ci.org/riguron/CaptchaRecognition.svg?branch=master)](https://travis-ci.org/riguron/CaptchaRecognition)
+[![codecov](https://codecov.io/gh/riguron/CaptchaRecognition/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/CaptchaRecognition)
 
 # Features
 
