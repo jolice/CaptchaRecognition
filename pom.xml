@@ -24,12 +24,8 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
-
     </dependencyManagement>
-
-
 
     <build>
         <plugins>
@@ -64,7 +60,6 @@
     </build>
 
     <dependencies>
-
 
         <dependency>
             <groupId>org.projectlombok</groupId>
