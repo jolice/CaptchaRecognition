@@ -10,3 +10,13 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 
+addons:
+  sonarcloud:
+    organization: "riguron"
+    token:
+      secure: "PJ40wgkz8sppy9JQaYN370e8ilMXO1N5xhZ93X4x1eJNgy8WV3nvFyJk4c4oDLUqMfg5n2WBe9tYCRDZA1+Xc7f860IDEqB3vp5clPkmdNL06dR8iIvY7l/38Ym3BFzXSEM8P/5Unba5rf/ZTRYEMYKTS0U2VEqbuIdMbmvjnmDJmWFq9FwOwkfTh7sANgoM2fNcBX3Cw5iCUNSQtkR3xZGtXpkSxErbUHMSWwR/n0hjEqaAAH5c8cMHapaen83zqZkaEamXasECMIN9f/3ByJ4rO9QT1LV9tiScyGF6gcCZwUcrdFJkM42Zz4XfOQ9GL/rQgRJ4Nm3Y++zwIdKx4r1kQhBF7vieSsHbXnZLefKsrJxy66xDNl39lgDiZ8qRShEvFvGn+pdFsY3QnCBDAJgye43Glac1UakhsoHO5kE6umR6sqLWzDdKKNiadDjv2HL6iqUi5iND2OJ1VkKELnkTWLDTvgoY980tXFshdyotH3QoieUlFpFBuA8CzR5iBcWi9Edx4jYrbU5cFfCzXxbj4haMxFMUd7ErlzzZVCfTTICMoTZVioMRtOmK2VVTUDj/Ehsv0l21cO6bnAhrAOYHxQy0cqoRnBqxVyeCetmmVdJtKWjhJc2u6d0FjLdwec20XFEY0h5E3PoseEPK6G1sNbIy3L7jbHW4zFvOBPE="
+
+
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=riguron_CaptchaRecognition
+
