@@ -4,6 +4,7 @@ This is a model of a web service that allows users for solving customers' captch
 
 [![Build Status](https://travis-ci.org/riguron/CaptchaRecognition.svg?branch=master)](https://travis-ci.org/riguron/CaptchaRecognition)
 [![codecov](https://codecov.io/gh/riguron/CaptchaRecognition/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/CaptchaRecognition)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/50ad090ee5354a598fe92ad96b7367d2)](https://www.codacy.com/manual/riguron/CaptchaRecognition?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=riguron/CaptchaRecognition&amp;utm_campaign=Badge_Grade)
 [![HitCount](http://hits.dwyl.io/riguron/CaptchaRecognition.svg)](http://hits.dwyl.io/riguron/CaptchaRecognition)
 
 # Features
