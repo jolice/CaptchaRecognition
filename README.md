@@ -3,10 +3,8 @@
 This is a model of a web service that allows users for solving customers' captchas for the fee, a basic implementation of the AntiGate service. 
 
 [![Build Status](https://travis-ci.org/riguron/CaptchaRecognition.svg?branch=master)](https://travis-ci.org/riguron/CaptchaRecognition)
-[![codecov](https://codecov.io/gh/riguron/CaptchaRecognition/branch/master/graph/badge.svg)](https://codecov.io/gh/riguron/CaptchaRecognition)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/50ad090ee5354a598fe92ad96b7367d2)](https://www.codacy.com/manual/riguron/CaptchaRecognition?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=riguron/CaptchaRecognition&amp;utm_campaign=Badge_Grade)
 
-# Features
+## Features
 
 - Access through the secured REST API
 - API key (token) authentication
@@ -14,7 +12,18 @@ This is a model of a web service that allows users for solving customers' captch
 - Recognition by multiple users for more precise results
 - Automatical captcha requeuing
 
-# Technologies used
+## Running 
+
+To start a web application, clone the project and run it:
+
+```bash
+git clone git@github.com:riguron/CaptchaRecognition.git
+cd CaptchaRecognition
+mvn clean compile
+mvn spring-boot:run -pl Bootstrap
+```
+
+## Technologies used
 
 - Spring Boot
 - Spring MVC
