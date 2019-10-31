@@ -1,23 +1,24 @@
 package io.riguron.captcha.response;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import io.riguron.captcha.type.CaptchaType;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-@JsonInclude(JsonInclude.Include.NON_NULL)
-public class CaptchaGetResponse {
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
+@NoArgsConstructor
+@Data
+public class CaptchaGetResponse extends Response {
 
-    private boolean success;
     private CaptchaType captchaType;
     private String contents;
 
     public CaptchaGetResponse(CaptchaType captchaType, String contents) {
-        this.success = true;
+        super(true);
         this.captchaType = captchaType;
         this.contents = contents;
-    }
-
-    public CaptchaGetResponse() {
-        this.success = false;
     }
 
 

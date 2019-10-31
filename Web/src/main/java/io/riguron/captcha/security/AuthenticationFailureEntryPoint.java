@@ -20,7 +20,7 @@ public class AuthenticationFailureEntryPoint extends BasicAuthenticationEntryPoi
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        setRealmName("NextGeneric");
+        setRealmName("CaptchaRecognition");
         super.afterPropertiesSet();
     }
 }

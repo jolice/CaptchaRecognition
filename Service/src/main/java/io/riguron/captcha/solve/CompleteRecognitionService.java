@@ -2,7 +2,7 @@ package io.riguron.captcha.solve;
 
 import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
 import io.riguron.captcha.CaptchaStatus;
-import io.riguron.captcha.IdentifierQueue;
+import io.riguron.captcha.queue.IdentifierQueue;
 import io.riguron.captcha.exception.CaptchaNotFoundException;
 import io.riguron.captcha.repository.CaptchaRepository;
 import io.riguron.captcha.user.CompleteRecognition;

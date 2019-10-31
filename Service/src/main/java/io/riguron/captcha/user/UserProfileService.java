@@ -1,38 +1,39 @@
 package io.riguron.captcha.user;
 
+import io.riguron.captcha.repository.UserBalanceRepository;
 import io.riguron.captcha.repository.UserProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-import java.util.UUID;
 
 @Component
 public class UserProfileService {
 
+    private PasswordEncoder passwordEncoder;
     private UserProfileRepository userProfileRepository;
+    private UserBalanceRepository userBalanceRepository;
 
     @Autowired
-    public UserProfileService(UserProfileRepository userProfileRepository) {
+    public UserProfileService(PasswordEncoder passwordEncoder, UserProfileRepository userProfileRepository, UserBalanceRepository userBalanceRepository) {
+        this.passwordEncoder = passwordEncoder;
         this.userProfileRepository = userProfileRepository;
-    }
-
-    @Transactional(readOnly = true)
-    public Optional<UserProfile> findByToken(String apiKey) {
-        return userProfileRepository.findOneByApiKey(apiKey);
+        this.userBalanceRepository = userBalanceRepository;
     }
 
     @Transactional
-    public UserProfile register(String login) {
+    public void register(String login, String password) {
 
         if (userProfileRepository.existsByLogin(login)) {
-            throw new IllegalArgumentException("User with such login already exists");
+            throw new IllegalArgumentException("User already exists");
         }
 
-        String apiKey = UUID.randomUUID().toString().replace("-", "");
-        UserProfile userProfile = new UserProfile(login, apiKey);
-        return userProfileRepository.save(userProfile);
+        if (password.length() <= 6) {
+            throw new IllegalArgumentException("Password must be at least 6 characters long");
+        }
+        UserProfile userProfile = new UserProfile(login, passwordEncoder.encode(password));
+        userProfileRepository.save(userProfile);
+        userBalanceRepository.save(new UserBalance(userProfile));
     }
 
 }

@@ -1,11 +1,12 @@
 package io.riguron.captcha;
 
-import lombok.extern.slf4j.Slf4j;
+import io.riguron.captcha.queue.IdentifierQueue;
 import io.riguron.captcha.repository.CaptchaRepository;
-import io.riguron.captcha.repository.UserProfileRepository;
+import io.riguron.captcha.repository.CompleteRecognitionRepository;
 import io.riguron.captcha.type.Captcha;
-import io.riguron.captcha.user.UserNotFoundException;
-import io.riguron.captcha.user.UserProfile;
+import io.riguron.captcha.user.CompleteRecognition;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,12 +16,13 @@ import java.util.Optional;
 @Slf4j
 public class CaptchaService {
 
-    private UserProfileRepository userProfileRepository;
+    private CompleteRecognitionRepository completeRecognitionRepository;
     private CaptchaRepository captchaRepository;
     private IdentifierQueue identifierQueue;
 
-    public CaptchaService(UserProfileRepository userProfileRepository, CaptchaRepository captchaRepository, IdentifierQueue identifierQueue) {
-        this.userProfileRepository = userProfileRepository;
+    @Autowired
+    public CaptchaService(CompleteRecognitionRepository completeRecognitionRepository, CaptchaRepository captchaRepository, IdentifierQueue identifierQueue) {
+        this.completeRecognitionRepository = completeRecognitionRepository;
         this.captchaRepository = captchaRepository;
         this.identifierQueue = identifierQueue;
     }
@@ -39,8 +41,9 @@ public class CaptchaService {
     }
 
     private int determineInitialWorkers(Captcha captcha) {
-        UserProfile userProfile = userProfileRepository.findById(captcha.getOriginatorId()).orElseThrow(UserNotFoundException::new);
-        return userProfile.getCompleteRecognition().isEnabled() ? userProfile.getCompleteRecognition().getMinimumAttempts() : 1;
+        return completeRecognitionRepository.findByUserId(captcha.getOriginatorId())
+                .map(CompleteRecognition::getMinimumAttempts)
+                .orElse(1);
     }
 
     @Transactional

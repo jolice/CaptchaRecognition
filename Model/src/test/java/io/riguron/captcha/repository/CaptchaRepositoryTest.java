@@ -1,24 +1,14 @@
 package io.riguron.captcha.repository;
 
 import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
-import com.vladmihalcea.sql.SQLStatementCountValidator;
+import io.riguron.captcha.type.Captcha;
 import io.riguron.captcha.type.NormalCaptcha;
 import lombok.extern.slf4j.Slf4j;
-import io.riguron.captcha.type.Captcha;
-import io.riguron.captcha.TestConfiguration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -31,14 +21,8 @@ import static com.vladmihalcea.sql.SQLStatementCountValidator.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = TestConfiguration.class)
-@DataJpaTest
-@TestPropertySource("classpath:test.properties")
-@Transactional(propagation = Propagation.NEVER)
 @Slf4j
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class CaptchaRepositoryTest {
+public class CaptchaRepositoryTest extends RepositoryTest {
 
     private Consumer<Captcha> EMPTY_ACTION = o -> {
     };
@@ -63,10 +47,8 @@ public class CaptchaRepositoryTest {
 
     @Test
     public void testLoadWithNoSolvers() {
-        runTransaction(() -> fetchAndCompare(1, identifier -> {
-            return captchaRepository.findById(identifier,
-                    EntityGraphs.named("solutions"));
-        }, captcha -> {
+        runTransaction(() -> fetchAndCompare(1, identifier -> captchaRepository.findById(identifier,
+                EntityGraphs.named("solutions")), captcha -> {
             assertEquals(0, captcha.getSolutions().size());
         }));
     }

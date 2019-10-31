@@ -1,9 +1,9 @@
 package io.riguron.captcha;
 
-import com.cosium.spring.data.jpa.entity.graph.domain.EntityGraphs;
 import io.riguron.captcha.exception.CaptchaNotFoundException;
 import io.riguron.captcha.exception.IllegalCaptchaStateException;
 import io.riguron.captcha.options.CaptchaOptions;
+import io.riguron.captcha.queue.IdentifierQueue;
 import io.riguron.captcha.repository.CaptchaRepository;
 import io.riguron.captcha.transaction.Procedure;
 import lombok.extern.slf4j.Slf4j;
@@ -108,7 +108,7 @@ public class CaptchaDistributionService {
     }
 
     private Captcha loadCaptchaWithSolvers(final int captchaId) {
-        return captchaRepository.findById(captchaId, EntityGraphs.named("solvers")).orElseThrow(CaptchaNotFoundException::new);
+        return captchaRepository.findById(captchaId).orElseThrow(CaptchaNotFoundException::new);
     }
 
 }

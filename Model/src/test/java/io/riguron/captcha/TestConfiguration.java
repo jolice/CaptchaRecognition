@@ -14,11 +14,12 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
-
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @Import(PersistenceConfig.class)
 public class TestConfiguration {
+
+    public static final String PROPERTIES = "classpath:test.properties";
 
     @Primary
     @Bean
@@ -34,6 +35,6 @@ public class TestConfiguration {
     }
 
     private DataSource h2() {
-        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.HSQL).build();
+        return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).build();
     }
 }

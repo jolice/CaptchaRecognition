@@ -16,17 +16,16 @@ import java.util.*;
 
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Inheritance(strategy = InheritanceType.JOINED)
-@NamedEntityGraphs(
-        {
-                @NamedEntityGraph(
-                        name = "solutions",
-                        attributeNodes = @NamedAttributeNode("solutions")
-                ),
-                @NamedEntityGraph(
-                        name = "solvers",
-                        attributeNodes = @NamedAttributeNode("solvers")
-                )
-        }
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "solutions",
+                attributeNodes = @NamedAttributeNode("solutions")
+        ),
+        @NamedEntityGraph(
+                name = "solvers",
+                attributeNodes = @NamedAttributeNode("solvers")
+        )
+}
 )
 public abstract class Captcha {
 

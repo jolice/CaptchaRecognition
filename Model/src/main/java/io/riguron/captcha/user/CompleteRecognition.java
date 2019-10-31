@@ -2,21 +2,29 @@ package io.riguron.captcha.user;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import javax.persistence.*;
 import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-@Embeddable
+@Entity
 @Data
-@Setter(AccessLevel.NONE)
-@AllArgsConstructor
 @NoArgsConstructor
 public class CompleteRecognition {
 
-    @Setter
-    private boolean enabled;
+    @Id
+    private Integer id;
+
+    public CompleteRecognition(UserProfile profile, int minimumAttempts, int maximumAttempts, int minimumMatches) {
+        this.profile = profile;
+        this.minimumAttempts = minimumAttempts;
+        this.maximumAttempts = maximumAttempts;
+        this.minimumMatches = minimumMatches;
+    }
+
+    @MapsId
+    @OneToOne(fetch = FetchType.LAZY)
+    private UserProfile profile;
 
     @Column
     @Min(2)

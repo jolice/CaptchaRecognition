@@ -17,21 +17,14 @@ public class UserProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(unique = true)
+    @Column(length = 30, unique = true, nullable = false)
     private String login;
 
-    @Column(unique = true, nullable = false)
-    private String apiKey;
+    @Column(nullable = false)
+    private String password;
 
-    @Column
-    private UserBalance userBalance;
-
-    @Column
-    @Setter
-    private CompleteRecognition completeRecognition;
-
-    public UserProfile(String login, String apiKey) {
+    public UserProfile(String login, String password) {
         this.login = login;
-        this.apiKey = apiKey;
+        this.password = password;
     }
 }
